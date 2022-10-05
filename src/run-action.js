@@ -71,18 +71,21 @@ const getNumberOfLines = async (tools) => {
 };
 
 const assignLabelForLineChanges = async (tools, numberOfLines, labelConfig) => {
+  const newLabel = labelConfig.find((elem) => numberOfLines <= elem.size);
+
   await Promise.all(
     labelConfig.map(async (item) => {
       const { name } = item;
-      if (await existsLabel(tools, name)) {
-        await removeLabel(tools, name);
+      if (!newLabel || name !== newLabel.name) {
+        if (await existsLabel(tools, name)) {
+          await removeLabel(tools, name);
+        }
       }
     }),
   );
 
-  const element = labelConfig.find((elem) => numberOfLines <= elem.size);
-  if (element) {
-    await addLabel(tools, element.name);
+  if (newLabel) {
+    await addLabel(tools, newLabel.name);
   }
 };
 
