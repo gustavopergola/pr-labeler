@@ -90,6 +90,7 @@ const assignLabelForLineChanges = async (tools, numberOfLines, labelConfig) => {
 };
 
 module.exports = async (tools) => {
+  if (tools.github.event_name === "push") return
   const labelConfig = getLabelConfig(tools);
   await createLabelsIfNotExists(tools, labelConfig);
   const numberOfLines = await getNumberOfLines(tools);
