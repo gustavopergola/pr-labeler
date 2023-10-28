@@ -1,13 +1,13 @@
 name: pr-labeler
 
-on: [pull_request]
+on: [pull_request, push]
 
 jobs:
   pr-labeler:
     runs-on: ubuntu-latest
     name: Label the PR size
     steps:
-      - uses: gustavopergola/pr-labeler@v1.0.1
+      - uses: gustavopergola/pr-labeler@v1.3.0
         with:
           xs_max_size: '10'
           s_max_size: '100'
