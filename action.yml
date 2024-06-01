@@ -19,7 +19,11 @@ inputs:
     required: true
 runs:
   using: 'node20'
+<<<<<<< HEAD
   main: 'index.js'
+=======
+  image: 'index.js'
+>>>>>>> 9eb252087dfa7195884bb12e801b10a8047df890
   args:
     - ${{ inputs.xs_max_size }}
     - ${{ inputs.s_max_size }}
